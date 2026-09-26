@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from time import perf_counter
+import pandas as pd
 
 def run_experiment(config_name, max_depth_size,  X_train, X_test, y_train, y_test):
         model = DecisionTreeClassifier(max_depth=max_depth_size, random_state=42)
@@ -46,6 +47,8 @@ def main():
     
     kq1 = run_experiment("tree_depth_5", 5, X_train, X_test, y_train, y_test)
     kq2 = run_experiment("tree_depth_10", 10, X_train, X_test, y_train, y_test)
+
+    print(pd.DataFrame([kq1, kq2]).to_string(index = False))
 
 
 
