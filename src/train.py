@@ -26,7 +26,7 @@ def main():
     predict_seconds = perf_counter() - start_pred
 
     print("Config model: max_depth = 5, random_state = 42 with the accuracy: ", accuracy_score(y_true=y_test, y_pred=y_pred))
-    print(f"Fit stage costs: {round(fit_seconds,6)}s; Predict stage costs: {round(predict_seconds, 6)}s")
+    print(f"Fit stage costs: {fit_seconds:.6f}s; Predict stage costs: {predict_seconds:.6f}s")
 
 
 if __name__ == "__main__":
