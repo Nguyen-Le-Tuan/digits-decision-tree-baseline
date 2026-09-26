@@ -29,6 +29,8 @@ def test_run_experiment():
             "n_test",
     }
 
+    #Run to check: python -m pytest -q
+    
     assert required_keys <= record.keys()
     assert 0.0 <= record["accuracy"] <= 1
     assert record["fit_seconds"] >= 0

@@ -41,6 +41,33 @@ def run_experiment(config_name, max_depth_size,  X_train, X_test, y_train, y_tes
 
         return results
 
+
+def save_results(all_results, output_dir):
+    output_dir = Path(output_dir)
+
+    output_dir.mkdir(parents=True, exist_ok = True)
+
+    csv_path = output_dir / "results.csv"
+    
+    with csv_path.open("w", newline="",encoding="utf-8") as file:
+        writer = csv.DictWriter(file,fieldnames=list(all_results[0].keys()))
+        writer.writeheader()
+        writer.writerows(all_results)
+
+    json_path = output_dir / "results.json"
+    with json_path.open("w", encoding="utf-8") as file:
+        json.dump(all_results, file, indent = 2)
+
+    with csv_path.open("r", newline="", encoding="utf-8") as file:
+        csv_rows = list(csv.DictReader(file))
+
+    with json_path.open("r", encoding="utf-8") as file:
+        json_rows = json.load(file)
+
+    print(len(csv_rows), len(json_rows))
+
+
+     
 def main():
     X, y = load_digits(return_X_y=True)
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2, random_state=42, stratify=y)
@@ -56,26 +83,9 @@ def main():
 
     project_root = Path(__file__).resolve().parents[1]
     results_dir = project_root / "results"
-    results_dir.mkdir(parents=True, exist_ok = True)
+    
 
-    csv_path = results_dir / "results.csv"
-
-    with csv_path.open("w", newline="",encoding="utf-8") as file:
-        writer = csv.DictWriter(file,fieldnames=list(all_results[0].keys()))
-        writer.writeheader()
-        writer.writerows(all_results)
-
-    json_path = results_dir / "results.json"
-    with json_path.open("w", encoding="utf-8") as file:
-        json.dump(all_results, file, indent = 2)
-
-    with csv_path.open("r", newline="", encoding="utf-8") as file:
-        csv_rows = list(csv.DictReader(file))
-
-    with json_path.open("r", encoding="utf-8") as file:
-        json_rows = json.load(file)
-
-    print(len(csv_rows), len(json_rows))
+    save_results([kq1, kq2], results_dir)
 
 if __name__ == "__main__":
     main()
