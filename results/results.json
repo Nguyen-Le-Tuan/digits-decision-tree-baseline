@@ -5,8 +5,8 @@
     "max_depth": 5,
     "seed": 42,
     "accuracy": 0.6694444444444444,
-    "fit_seconds": 0.007971846003783867,
-    "predict_seconds": 0.0005184370093047619,
+    "fit_seconds": 0.0067250360007165,
+    "predict_seconds": 0.00028545000532176346,
     "n_train": 1437,
     "n_test": 360
   },
@@ -16,8 +16,8 @@
     "max_depth": 10,
     "seed": 42,
     "accuracy": 0.8111111111111111,
-    "fit_seconds": 0.010203308003838174,
-    "predict_seconds": 0.00034487899392843246,
+    "fit_seconds": 0.009652468012063764,
+    "predict_seconds": 0.00025453499983996153,
     "n_train": 1437,
     "n_test": 360
   }
