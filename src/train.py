@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from time import perf_counter
-import pandas as pd
 import csv
 import json
 from pathlib import Path
