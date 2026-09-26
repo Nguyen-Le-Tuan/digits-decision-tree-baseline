@@ -4,6 +4,10 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from time import perf_counter
 import pandas as pd
+import csv
+import json
+from pathlib import Path
+
 
 def run_experiment(config_name, max_depth_size,  X_train, X_test, y_train, y_test):
         model = DecisionTreeClassifier(max_depth=max_depth_size, random_state=42)
@@ -48,9 +52,30 @@ def main():
     kq1 = run_experiment("tree_depth_5", 5, X_train, X_test, y_train, y_test)
     kq2 = run_experiment("tree_depth_10", 10, X_train, X_test, y_train, y_test)
 
-    print(pd.DataFrame([kq1, kq2]).to_string(index = False))
+    all_results = [kq1, kq2]
 
+    project_root = Path(__file__).resolve().parents[1]
+    results_dir = project_root / "results"
+    results_dir.mkdir(parents=True, exist_ok = True)
 
+    csv_path = results_dir / "results.csv"
+
+    with csv_path.open("w", newline="",encoding="utf-8") as file:
+        writer = csv.DictWriter(file,fieldnames=list(all_results[0].keys()))
+        writer.writeheader()
+        writer.writerows(all_results)
+
+    json_path = results_dir / "results.json"
+    with json_path.open("w", encoding="utf-8") as file:
+        json.dump(all_results, file, indent = 2)
+
+    with csv_path.open("r", newline="", encoding="utf-8") as file:
+        csv_rows = list(csv.DictReader(file))
+
+    with json_path.open("r", encoding="utf-8") as file:
+        json_rows = json.load(file)
+
+    print(len(csv_rows), len(json_rows))
 
 if __name__ == "__main__":
     main()
