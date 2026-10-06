@@ -43,6 +43,13 @@ Run the experiment from the repository root:
 python src/train.py
 ```
 
+Use `--seed` to change the random seed used by both the train/test split and the
+classifier:
+
+```bash
+python src/train.py --seed 7
+```
+
 The script writes or overwrites `results/results.csv` and `results/results.json`. Each file contains one record per configuration, including configuration name, model, depth, seed, accuracy, fit/prediction seconds, and train/test sample counts.
 
 Run the smoke test from the repository root:
@@ -65,4 +72,3 @@ The test uses small data subsets and a temporary output directory. It checks the
 ## Reproducibility
 
 For this v0 baseline, the same code, pinned dependencies, seed, and scikit-learn bundled dataset are expected to produce the same split and accuracy. Exact runtime values are not expected to be reproducible.
-
