@@ -1,4 +1,4 @@
-# ML Experiment Baseline: Decision Tree on Digits
+# Digits Decision Tree Baseline
 
 A small, reproducible scikit-learn experiment comparing Decision Tree accuracy and runtime on the built-in Digits dataset. This repository is a learning baseline; it is not a GPU benchmark or a benchmark across hardware devices.
 
